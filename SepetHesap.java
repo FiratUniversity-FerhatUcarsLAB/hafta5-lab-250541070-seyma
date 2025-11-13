@@ -2,133 +2,179 @@
  * Ad Soyad: [Şeyma Nur KATAR]
  * Ogrenci No: [250541070]
  * Tarih: [13.11.2025]
- * Aciklama: Gorev 3 - E-Ticaret Sepet Hesaplayici
- *
- * Bu program 3 adet urunun sepet tutarini
- * KDV, indirim ve kargo dahil hesaplar.
+ * Aciklama: Gorev 1 - Geometrik Sekil Hesaplayici
+ * 
+ * Bu program temel geometrik sekillerin alan ve
+ * cevre hesaplamalarini yapar.
  */
 
 import java.util.Scanner;
 
-public class SepetHesap {
-
-    // Sabitler
-    final static double VAT_RATE = 0.18;      // KDV Oranı (%18)
-    final static double SHIPPING_FEE = 29.99; // Sabit kargo ücreti (TL)
-
-    // METOT 1: Bir urunun toplam fiyatini hesaplar (fiyat * adet)
-    public static double calculateLineTotal(double price, int quantity) {
-        // Satir Toplami = fiyat * adet
-        return price * quantity;
+public class GeometriHesap {
+    
+    // METOT 1: Kare alani
+    public static double calculateSquareArea(double side) {
+        // Alan = kenar * kenar
+        
+        return side * side;
     }
-
-    // METOT 2: Sepetteki 3 urunun ara toplamini hesaplar
-    public static double calculateSubtotal(double line1, double line2, double line3) {
-        // Ara Toplam = urun1 + urun2 + urun3
-        return line1 + line2 + line3;
+    
+    // METOT 2: Kare cevresi
+    public static double calculateSquarePerimeter(double side) {
+        // Cevre = 4 * kenar
+        
+        return 4 * side;
     }
-
-    // METOT 3: Indirim tutarini hesaplar
-    public static double calculateDiscountAmount(double subtotal, double discountPercentage) {
-        // Indirim Tutari = araToplam * (indirimYuzdesi / 100)
-        return subtotal * (discountPercentage);
+    
+    // METOT 3: Dikdortgen alani
+    public static double calculateRectangleArea(double width, double height) {
+        // Alan = genislik * yukseklik
+        
+        return width * height;
     }
-
-    // METOT 4: Indirimli fiyati hesaplar (araToplam - indirimTutari)
-    public static double applyDiscount(double subtotal, double discountAmount) {
-        // Indirimli Toplam = araToplam - indirimTutari
-        return subtotal - discountAmount;
+    
+    // METOT 4: Dikdortgen cevresi
+    public static double calculateRectanglePerimeter(double width, double height) {
+        // Cevre = 2 * (genislik + yukseklik)
+        
+        return 2 * (width + height);
     }
-
-    // METOT 5: KDV tutarini hesaplar (indirimliTutar * kdvOrani)
-    public static double calculateVAT(double discountedTotal, double vatRate) {
-        // KDV Tutari = indirimliTutar * VAT_RATE
-        return discountTotal * VAT_RATE;
+    
+    // METOT 5: Daire alani
+    public static double calculateCircleArea(double radius) {
+        // Alan = PI * r * r
+        // Math.PI kullanabilirsiniz
+        
+        return Math.PI * radius * radius;
     }
-
-    // METOT 6: Genel toplami hesaplar (indirimliTutar + kdv + kargo)
-    public static double calculateGrandTotal(double discountedTotal, double vatAmount, double shippingFee) {
-        // Genel Toplam = indirimliTutar + kdvTutari + kargoUcreti
-        return discountedTotal + vatAmount  + shippingFee;
+    
+    // METOT 6: Daire cevresi
+    public static double calculateCircleCircumference(double radius) {
+        // Cevre = 2 * PI * r
+        
+        return 2 * Math.PI * radius;
     }
-
+    
+    // METOT 7: Ucgen alani (taban ve yukseklik ile)
+    public static double calculateTriangleArea(double base, double height) {
+        // Alan = (taban * yukseklik) / 2
+        
+        return (base * height) / 2;
+    }
+    
+    // METOT 8: Ucgen cevresi
+    public static double calculateTrianglePerimeter(double a, double b, double c) {
+        // Cevre = a + b + c
+        
+        return a + b + c;
+    }
+    
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
-        System.out.println("=== E-TICARET SEPET HESAPLAYICI ===");
-        System.out.println("\nLutfen 3 urunun bilgilerini girin:");
-
-        // URUN 1 Bilgileri
-        System.out.println("\nURUN 1:");
-        System.out.print("  Birim Fiyat (TL): ");
-        double price1 = input.nextDouble();
-        System.out.print("  Adet: ");
-        int qty1 = input.nextInt();
-
-        // URUN 2 Bilgileri
-        System.out.println("\nURUN 2:");
-        System.out.print("  Birim Fiyat (TL): ");
-        double price2 = input.nextDouble();
-        System.out.print("  Adet: ");
-        int qty2 = input.nextInt();
-
-        // URUN 3 Bilgileri
-        System.out.println("\nURUN 3:");
-        System.out.print("  Birim Fiyat (TL): ");
-        double price3 = input.nextDouble();
-        System.out.print("  Adet: ");
-        int qty3 = input.nextInt();
-
-        // Indirim Bilgisi
-        System.out.println("\nIndirim Kuponu Yuzdesi (%): ");
-        double discountPercent = input.nextDouble();
-
-        // HESAPLAMALARI YAP - Metotlari cagir
-        // 1. Urunlerin satis toplamlarini hesapla
-        double line1Total = calculateLineTotal(price1, qty1);
-        double line2Total = calculateLineTotal(price2, qty2);
-        double line3Total = calculateLineTotal(price3, qty3);
         
-    
+        System.out.println("=== GEOMETRIK SEKIL HESAPLAYICI ===");
+        System.out.println();
+        
+        // KARE bilgileri
+        System.out.println("KARE:");
+        System.out.print("Kenar uzunlugu (cm): ");
+        double squareSide = input.nextDouble();
+        
+        // DIKDORTGEN bilgileri
+        System.out.println("\nDIKDORTGEN:");
+        System.out.print("Kisa kenar (cm): ");
+        double rectWidth = input.nextDouble();
+        System.out.print("Uzun kenar (cm): ");
+        double rectHeight = input.nextDouble();
+        
+        // DAIRE bilgileri
+        System.out.println("\nDAIRE:");
+        System.out.print("Yaricap (cm): ");
+        double radius = input.nextDouble();
+        
+        // UCGEN bilgileri
+        System.out.println("\nUCGEN:");
+        System.out.print("Taban (cm): ");
+        double base = input.nextDouble();
+        System.out.print("Yukseklik (cm): ");
+        double height = input.nextDouble();
+        System.out.print("1. kenar (cm): ");
+        double side1 = input.nextDouble();
+        System.out.print("2. kenar (cm): ");
+        double side2 = input.nextDouble();
+        System.out.print("3. kenar (cm): ");
+        double side3 = input.nextDouble();
+        
+        // HESAPLAMALARI YAP - Metotlari cagir
+        
+        //KARE
+        double squareArea = calculateSquareArea(squareSide);
+        double squarePerimeter = calculateSquarePerimeter(squareSide);
 
-        // 2. Ara toplami hesapla
-        double subtotal = calculateSubtotal(line1Total, line2Total, line3Total);
+        //DİKDÖRTGEN
+        double rectArea = calculateRectangleArea(rectWidth, rectHeight);
+        double rectPerimeter = calculateRectanglePerimeter(rectWidth, rectHeight);
 
-        // 3. Indirim tutarini hesapla
-        double discountedAmount = calculateDiscountAmount(sobtotal, discountPercent);
+        //DAİRE
+        double circleArea = calculateCircleArea(radius);
+        double circlePerimeter = calculatecircleCircumference(radius);
 
-        // 4. Indirimli toplami hesapla
-        double discountedTotal = applyDiscount(subtotal, discountAmount);
-      
+        //ÜÇGEN
+        double triangleArea = calculateTriangleArea(base, height);
+        double trianglePerimeter = calculateTrianglePerimeter(a, b, c);
 
-        // 5. KDV tutarini hesapla (Indirimli toplam uzerindecn)
-        double vatAmount = calculateVAT(discountedTotal, VAT_RATE);
-    
-      
+        
+        
 
-        // 6. Genel toplami hesapla
-        double grandTotal = calculateGrandTotal(discountedTotal, vatAmount, SHIPPING_FEE);
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // SONUCLARI YAZDIR
         System.out.println("\n========================================");
-        System.out.println("           SIPARIS OZETI");
+        System.out.println("         HESAPLAMA SONUCLARI");
         System.out.println("========================================");
-
-        System.out.printf("Urun 1 Toplam (%.2f TL x %d): %.2f TL\n", price1, qty1, line1Total);
-        System.out.printf("Urun 2 Toplam (%.2f TL x %d): %.2f TL\n", price2, qty2, line2Total);
-        System.out.printf("Urun 3 Toplam (%.2f TL x %d): %.2f TL\n", price3, qty3, line3Total);
-        System.out.println("----------------------------------------");
-        System.out.printf("Ara Toplam                   : %.2f TL\n", subtotal);
-
-        System.out.printf("\nIndirim Tutari (%%%.0f)         : -%.2f TL\n", discountPercent, discountAmount);
-        System.out.printf("Indirimli Toplam             : %.2f TL\n", discountedTotal);
-
-        System.out.printf("\nKDV Tutari (%%%.0f)             : +%.2f TL\n", (VAT_RATE * 100), vatAmount);
-        System.out.printf("Kargo Ucreti                 : +%.2f TL\n", SHIPPING_FEE);
-        System.out.println("----------------------------------------");
-        System.out.printf("GENEL TOPLAM                 : %.2f TL\n", grandTotal);
+        
+        System.out.printf("\nKARE (kenar: %.1f cm):\n", squareSide);
+        System.out.printf("Alan: %.1f cm^2\n", squareArea);
+        System.out.printf("Cevre: %.1f cm\n", squarePerimeter);
+        
+        
+        
+        System.out.printf("\nDIKDORTGEN (%.1f x %.1f cm):\n", rectWidth, rectHeight);
+        System.out.printf("Alan: %.1f cm^2\n", rectArea);
+        System.out.printf("Cevre: %.1f cm\n", rectPerimeter);
+        
+        
+        
+        
+        System.out.printf("\nDAIRE (yaricap: %.1f cm):\n", radius);
+        System.out.printf("Alan: %.1f cm^2\n", circleArea);
+        System.out.printf("Cevre: %.1f cm\n", circleCircumference);
+        
+        
+        
+        
+        System.out.printf("\nUCGEN (taban: %.1f, yukseklik: %.1f cm):\n", base, height);
+        System.out.printf("Alan: %.1f cm^2\n", triangleArea);
+        System.out.printf("Cevre: %.1f cm\n", trianglePerimeter);
+        
+        
+        
+        
         System.out.println("========================================");
-
+        
         input.close();
     }
 }
